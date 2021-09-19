@@ -184,10 +184,8 @@ return function()
 			api.clipboard_set = setclipboard
 		else
 			local globals = globals()
-			api.clipboard_get = lookup(globals, "getclipboard", "get_clipboard", "Clipboard.get")
-								or unsupported("clipboard_get", flags.software)
-			api.clipboard_set = lookup(globals, "setclipboard", "set_clipboard", "Clipboard.set")
-								or unsupported("clipboard_set", flags.software)
+			api.clipboard_get = lookup(globals, "getclipboard", "get_clipboard", "Clipboard.get") or unsupported("clipboard_get", flags.software)
+			api.clipboard_set = lookup(globals, "setclipboard", "set_clipboard", "Clipboard.set") or unsupported("clipboard_set", flags.software)
 		end
 	end
 
@@ -215,7 +213,7 @@ return function()
 			api.getscripts = getscripts
 			api.getloadedmodules = getloadedmodules
 			api.getconnections = getconnections -- broken afaik, load anyway just in case
-		elseif flags.software == "ps" or flags.software == "unk" then
+		elseif flags.software == "ps" then
 			api.getgenv = getgenv
 			api.getrenv = getrenv
 			api.getsenv = getsenv
@@ -265,6 +263,15 @@ return function()
 			api.getreg = lookup(globals, "getreg", "getregistry", "get_registry") or unsupported("getreg", flags.software)
 			api.getgc = lookup(globals, "getgc", "get_gc", "gclist") or unsupported("getgc", flags.software)
 			api.getinstances = lookup(globals, "getinstances", "get_instances", "get_instance_list") or unsupported("getinstances", flags.software)
+			function api.getscripts()
+				-- manually reimplement
+				local rest = {}
+				local scre = getscriptenvs()
+				for k, _ in next, scre do
+					rest[#rest + 1] = k
+				end
+				return rest
+			end
 		end
 	end
 
@@ -285,7 +292,8 @@ return function()
 			api.context_get = getcontext
 			api.context_set = setcontext
 		else
-			api.context_get = lookup(globals(), )
+			api.context_get = getcontext or unsupported("getcontext", flags.software)
+			api.context_set = setcontext or unsupported("setcontext", flags.software)
 		end
 	end
 
@@ -298,8 +306,13 @@ return function()
 			api.io_write = writefile
 			api.io_read = readfile
 			api.io_append = appendfile
-		elseif 
+		else
+			api.io_write = writefile or unsupported("writefile", flags.software)
+			api.io_read = readfile or unsupported("readfile", flags.software)
+			api.io_append = appendfile or unsupported("appendfile", flags.software)
 	end
 
 	return api
 end
+
+syn_ = api; --added to add compatibility with Synapse-exclusive scripts which really dont need to be.
