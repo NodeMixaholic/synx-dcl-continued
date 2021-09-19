@@ -25,9 +25,7 @@
 		SirHurt:	?
 
 		DISCLAIMER
-		This script is offered FREE OF CHARGE by the folks at Synapse GP. You can use this for
-		ANYTHING and I (Louka) don't really care but it'd be nice if you kept this disclaimer or
-		something (and a link to my website) so people know who wrote most of it <3
+		This script is offered FREE OF CHARGE by Sparksammy, originally by Synapse GP.
 
 		DISCLAIMER #2
 		The main reason why I decided to write this is because of the many API changes in the
