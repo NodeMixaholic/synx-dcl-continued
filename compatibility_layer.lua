@@ -1,5 +1,5 @@
--- Synapse X-Sanctioned Development Compatibility Layer (DCL)
--- https://github.com/LoukaMB/SynapseX/script/compatibility_layer.lua
+-- Synapse X-Sanctioned Development Compatibility Layer (DCL) Continued
+-- https://github.com/sparksammy/synx-dcl/compatibility_layer.lua
 -- Usage: loadstring(game:HttpGet("https://raw.githubusercontent.com/sparksammy/synx-dcl/master/compatibility_layer.lua"))()
 
 -- This script provides a standardized API for Lua scripts with environment extensions.
