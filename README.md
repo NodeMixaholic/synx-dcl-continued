@@ -1,2 +1,2 @@
 # synx-dcl
-Synapse X-Sanctioned Development Compatibility Layer (DCL)
+Synapse X-Sanctioned Development Compatibility Layer (DCL) but continued
